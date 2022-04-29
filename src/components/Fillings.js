@@ -4,7 +4,7 @@ export default function Fillings(props) {
     const fillings = props.fillings.sort((prev, next) => next.price - prev.price);
 
     return (
-        <main>
+        <main className="container">
             <h1 className="mb-3 pb-3 border-bottom">{title}</h1>
             <table className="table">
                 <thead>
