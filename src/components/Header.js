@@ -1,10 +1,10 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Header(props) {
     return (
         <>
             <header className="mb-4 border">
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav className="navbar navbar-expand-lg navbar-light bg-light p-0">
                     <div className="container">
                         <div className="collapse navbar-collapse">
                             <Link className="navbar-brand" to="/">
@@ -12,21 +12,21 @@ export default function Header(props) {
                             </Link>
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="toppings">
+                                    <NavLink className="nav-link py-3 px-2" to="toppings">
                                         Toppings
-                                    </Link>
+                                    </NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="stuffings">
+                                    <NavLink className="nav-link py-3 px-2" to="stuffings">
                                         Stuffings
-                                    </Link>
+                                    </NavLink>
                                 </li>
                             </ul>
                             <ul className="navbar-nav navbar-right">
                                 <li className="nav-item">
-                                    <Link className="me-3 nav-link" to="history">
+                                    <NavLink className="me-3 nav-link py-3 px-2" to="history">
                                         Order History
-                                    </Link>
+                                    </NavLink>
                                 </li>
                             </ul>
                             <div className="d-flex">{props.order()}</div>
@@ -34,7 +34,6 @@ export default function Header(props) {
                     </div>
                 </nav>
             </header>
-            <Outlet />
         </>
     );
 }

@@ -1,6 +1,6 @@
 export default function History() {
     return (
-        <main className="container">
+        <>
             <h1 className="mb-3 pb-3 border-bottom">Order History</h1>
             <table className="table">
                 <thead>
@@ -14,6 +14,6 @@ export default function History() {
                 </thead>
                 <tbody></tbody>
             </table>
-        </main>
+        </>
     );
 }
