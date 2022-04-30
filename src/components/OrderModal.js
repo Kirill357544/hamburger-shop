@@ -5,7 +5,6 @@ export default function OrderModal(props) {
     const date = props.order.date;
     const count = props.order.count;
     const totalPrice = props.order.totalPrice;
-    const price = props.order.price;
     const size = props.order.size;
 
     return (
