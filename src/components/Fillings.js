@@ -1,6 +1,7 @@
+import formatPrice from "../formatter/formatPrice";
+
 export default function Fillings(props) {
     const title = props.title;
-    const formatPrice = props.formatPrice;
     const fillings = props.fillings.sort((prev, next) => next.price - prev.price);
 
     return (
