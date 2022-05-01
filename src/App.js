@@ -6,6 +6,7 @@ import OrderButton from "./components/OrderButton";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import OrderStorage from "./OrderStorage";
+import HamburgerCreator from "./HamburgerCreator";
 
 // OrderStorage.add({
 //     date: Date.now(),
@@ -28,6 +29,7 @@ export default function App() {
                     element={<Fillings title="Stuffings" fillings={Hamburger.STUFFINGS} />}
                 />
                 <Route path="history" element={<History OrderStorage={OrderStorage} />} />
+                <Route path="order" element={<HamburgerCreator />} />
             </Route>
         </Routes>
     );

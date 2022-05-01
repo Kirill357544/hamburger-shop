@@ -1,9 +1,6 @@
 import formatPrice from "../formatter/formatPrice";
 
-export default function Fillings(props) {
-    const title = props.title;
-    const fillings = props.fillings.sort((prev, next) => next.price - prev.price);
-
+export default function Fillings({ title, fillings }) {
     return (
         <>
             <h1 className="mb-3 pb-3 border-bottom">{title}</h1>

@@ -1,16 +1,25 @@
 import OrderModal from "./OrderModal";
 import formatDate from "../formatter/formatDate";
 import formatPrice from "../formatter/formatPrice";
+import { useState } from "react";
 
-export default function History(props) {
-    const orders = props.OrderStorage.orders;
+export default function History({ OrderStorage }) {
+    const orders = OrderStorage.orders;
 
-    function handleTableBodyClick(event) {
+    let [orderModal, setOrderModal] = useState({
+        date: "0",
+        totalPrice: 0,
+        count: 0,
+        size: "",
+    });
+
+    function handleClick(event) {
+        setOrderModal(OrderStorage.getOrder(1));
         let target = event.target;
         while (target !== event.currentTarget) {
             if (target.tagName === "BUTTON") {
                 const orderId = target.dataset.order;
-                <OrderModal order={props.OrderStorage.getOrder(orderId)} />;
+                setOrderModal(OrderStorage.getOrder(orderId));
                 break;
             }
             target = target.parentElement;
@@ -20,7 +29,7 @@ export default function History(props) {
     return (
         <>
             <h1 className="mb-3 pb-3 border-bottom">Order History</h1>
-            <table className="table" onClick={(event) => handleTableBodyClick(event)}>
+            <table className="table" onClick={(event) => handleClick(event)}>
                 <thead>
                     <tr>
                         <th>Date &amp; Time</th>
@@ -53,7 +62,7 @@ export default function History(props) {
                     })}
                 </tbody>
             </table>
-            <OrderModal order={props.OrderStorage.getOrder(3)} />;
+            {/* <OrderModal order={orderModal} /> */}
         </>
     );
 }

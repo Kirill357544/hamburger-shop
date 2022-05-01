@@ -1,12 +1,7 @@
 import formatDate from "../formatter/formatDate";
 import formatPrice from "../formatter/formatPrice";
 
-export default function OrderModal(props) {
-    const date = props.order.date;
-    const count = props.order.count;
-    const totalPrice = props.order.totalPrice;
-    const size = props.order.size;
-
+export default function OrderModal({ order: { date, count, totalPrice, size } }) {
     return (
         <div
             className="modal fade"

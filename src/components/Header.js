@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 
-export default function Header(props) {
+export default function Header({ order }) {
     return (
         <>
             <header className="mb-4 border">
@@ -29,7 +29,7 @@ export default function Header(props) {
                                     </NavLink>
                                 </li>
                             </ul>
-                            <div className="d-flex">{props.order()}</div>
+                            <div className="d-flex">{order()}</div>
                         </div>
                     </div>
                 </nav>
