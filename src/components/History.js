@@ -62,7 +62,7 @@ export default function History({ OrderStorage }) {
                     })}
                 </tbody>
             </table>
-            {/* <OrderModal order={orderModal} /> */}
+            <OrderModal order={orderModal} />
         </>
     );
 }
