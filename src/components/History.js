@@ -6,12 +6,7 @@ import { useState } from "react";
 export default function History({ OrderStorage }) {
     const orders = OrderStorage.orders;
 
-    let [orderModal, setOrderModal] = useState({
-        date: "0",
-        totalPrice: 0,
-        count: 0,
-        size: "",
-    });
+    let [orderModal, setOrderModal] = useState(null);
 
     function handleClick(event) {
         setOrderModal(OrderStorage.getOrder(1));
@@ -62,7 +57,7 @@ export default function History({ OrderStorage }) {
                     })}
                 </tbody>
             </table>
-            <OrderModal order={orderModal} />
+            {(orderModal !== null) & <OrderModal order={orderModal} />}
         </>
     );
 }

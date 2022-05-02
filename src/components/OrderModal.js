@@ -1,7 +1,7 @@
 import formatDate from "../formatter/formatDate";
 import formatPrice from "../formatter/formatPrice";
 
-export default function OrderModal({ order: { date, count, totalPrice, size } }) {
+export default function OrderModal({ order }) {
     return (
         <div
             className="modal fade"
@@ -14,22 +14,22 @@ export default function OrderModal({ order: { date, count, totalPrice, size } })
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">
-                            Order {formatDate(date)}
+                            Order {formatDate(order.date)}
                         </h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" />
                     </div>
                     <div className="modal-body">
                         <div className="d-flex justify-content-between">
                             <div>Total price</div>
-                            <div>{formatPrice(totalPrice)}</div>
+                            <div>{formatPrice(order.totalPrice)}</div>
                         </div>
                         <div className="d-flex justify-content-between">
                             <div>Count</div>
-                            <div>{count}</div>
+                            <div>{order.count}</div>
                         </div>
                         <div className="d-flex justify-content-between">
                             <div>Size</div>
-                            <div>{size}</div>
+                            <div>{order.size}</div>
                         </div>
                     </div>
                     <div className="modal-footer">
