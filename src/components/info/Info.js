@@ -1,19 +1,31 @@
-export default function Info({ hamburger: { size, toppings, stuffings, calories, price } }) {
+import formatPrice from "../../formatter/formatPrice";
+
+export default function Info({ hamburger }) {
     return (
-        <div className="col-4">
+        <div className="col-4 mb-4">
             <dl className="border-bottom">
-                <dt>Size</dt>
-                <dd>Large</dd>
-                <dt>Toppings</dt>
-                <dd>1</dd>
-                <dt>Stuffings</dt>
-                <dd>2</dd>
-                <dt>Calories</dt>
-                <dd>270</dd>
+                <div>
+                    <dt>Size</dt>
+                    <dd>{hamburger.size.name}</dd>
+                </div>
+                <div>
+                    <dt>Toppings</dt>
+                    <dd>{hamburger.toppings.length}</dd>
+                </div>
+                <div>
+                    <dt>Stuffings</dt>
+                    <dd>{hamburger.stuffings.length}</dd>
+                </div>
+                <div>
+                    <dt>Calories</dt>
+                    <dd>{hamburger.calculateCalories()}</dd>
+                </div>
             </dl>
             <dl className="dl-horizontal">
-                <dt>Price</dt>
-                <dd>$26.73</dd>
+                <div>
+                    <dt>Price</dt>
+                    <dd>{formatPrice(hamburger.calculatePrice())}</dd>
+                </div>
             </dl>
         </div>
     );

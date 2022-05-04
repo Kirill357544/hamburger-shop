@@ -1,7 +1,12 @@
-export default function SizeSelector({ sizes, onSelectSize }) {
+import Hamburger from "../../Hamburger";
+
+export default function SizeSelector({ sizes, setHamburger }) {
+    function selectSize(size) {
+        setHamburger(new Hamburger(size));
+    }
+
     return (
         <>
-            <h1 className="mb-3 pb-3 border-bottom">Select Size</h1>
             <div className="p-5 bg-light rounded-3 d-flex justify-content-around">
                 {sizes.map((size, index) => {
                     return (
@@ -9,6 +14,7 @@ export default function SizeSelector({ sizes, onSelectSize }) {
                             <button
                                 className="btn btn-lg btn-primary"
                                 data-name={size.name}
+                                onClick={(event) => selectSize(size, event)}
                             >
                                 {size.name}
                             </button>
