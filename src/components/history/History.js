@@ -1,28 +1,15 @@
 import OrderModal from "./OrderModal";
-import formatDate from "../formatter/formatDate";
-import formatPrice from "../formatter/formatPrice";
+import formatDate from "../../formatter/formatDate";
+import formatPrice from "../../formatter/formatPrice";
 import { useState } from "react";
 
 export default function History({ OrderStorage }) {
     const orders = OrderStorage.orders;
     const [orderModal, setOrderModal] = useState(null);
 
-    function handleClick(event) {
-        let target = event.target;
-        while (target !== event.currentTarget) {
-            if (target.tagName === "BUTTON") {
-                const orderId = target.dataset.order;
-                setOrderModal(OrderStorage.getOrder(orderId));
-                break;
-            }
-            target = target.parentElement;
-        }
-    }
-
     return (
         <>
-            <h1 className="mb-3 pb-3 border-bottom">Order History</h1>
-            <table className="table" onClick={(event) => handleClick(event)}>
+            <table className="table">
                 <thead>
                     <tr>
                         <th>Date &amp; Time</th>
@@ -43,9 +30,7 @@ export default function History({ OrderStorage }) {
                                 <td>
                                     <button
                                         className="btn btn-outline-secondary"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal"
-                                        data-order={index}
+                                        onClick={() => setOrderModal(order)}
                                     >
                                         <i className="bi bi-list"></i>
                                     </button>
@@ -55,9 +40,7 @@ export default function History({ OrderStorage }) {
                     })}
                 </tbody>
             </table>
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-hidden="true">
-                <div className="modal-dialog">{orderModal !== null && <OrderModal order={orderModal} />}</div>
-            </div>
+            {orderModal !== null && <OrderModal order={orderModal} onClose={() => setOrderModal(null)} />}
         </>
     );
 }

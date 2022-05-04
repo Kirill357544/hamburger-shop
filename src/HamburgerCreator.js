@@ -1,5 +1,5 @@
-import SizeSelector from "./components/SizeSelector";
-import Info from "./components/Info";
+import SizeSelector from "./components/sizeSelector/SizeSelector";
+import Info from "./components/info/Info";
 import Hamburger from "./Hamburger";
 
 export default function HamburgerCreator() {

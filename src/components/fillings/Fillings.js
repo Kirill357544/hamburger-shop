@@ -1,9 +1,8 @@
-import formatPrice from "../formatter/formatPrice";
+import formatPrice from "../../formatter/formatPrice";
 
-export default function Fillings({ title, fillings }) {
+export default function Fillings({ fillings }) {
     return (
         <>
-            <h1 className="mb-3 pb-3 border-bottom">{title}</h1>
             <table className="table">
                 <thead>
                     <tr>
