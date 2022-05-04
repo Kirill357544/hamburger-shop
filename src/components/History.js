@@ -5,16 +5,9 @@ import { useState } from "react";
 
 export default function History({ OrderStorage }) {
     const orders = OrderStorage.orders;
-
-    let [orderModal, setOrderModal] = useState({
-        date: "0",
-        totalPrice: 0,
-        count: 0,
-        size: "",
-    });
+    const [orderModal, setOrderModal] = useState(null);
 
     function handleClick(event) {
-        setOrderModal(OrderStorage.getOrder(1));
         let target = event.target;
         while (target !== event.currentTarget) {
             if (target.tagName === "BUTTON") {
@@ -62,7 +55,9 @@ export default function History({ OrderStorage }) {
                     })}
                 </tbody>
             </table>
-            <OrderModal order={orderModal} />
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-hidden="true">
+                <div className="modal-dialog">{orderModal !== null && <OrderModal order={orderModal} />}</div>
+            </div>
         </>
     );
 }
