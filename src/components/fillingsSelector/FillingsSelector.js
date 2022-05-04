@@ -1,12 +1,4 @@
-export default function FillingsSelector({ hamburger, setHamburger, fillings, title }) {
-    function handleClick(filling, event) {
-        hamburger.addTopping(filling);
-        console.log({ ...hamburger.to });
-        // setHamburger(...hamburger);
-
-        event.target.hidden = true;
-    }
-
+export default function FillingsSelector({ onAdd, fillings, title }) {
     return (
         <div className="col-6 rounded-3 border">
             <div className="d-flex justify-content-between">
@@ -27,7 +19,7 @@ export default function FillingsSelector({ hamburger, setHamburger, fillings, ti
                         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {fillings.map((filling) => {
                                 return (
-                                    <li key={filling.name} onClick={(event) => handleClick(filling, event)}>
+                                    <li key={filling.name} onClick={(event) => onAdd(filling, event)}>
                                         <span className="dropdown-item">{filling.name}</span>
                                     </li>
                                 );
