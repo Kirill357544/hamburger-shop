@@ -1,4 +1,4 @@
-export default function SizeSelector({ sizes }) {
+export default function SizeSelector({ sizes, onSelectSize }) {
     return (
         <>
             <h1 className="mb-3 pb-3 border-bottom">Select Size</h1>
@@ -6,7 +6,10 @@ export default function SizeSelector({ sizes }) {
                 {sizes.map((size, index) => {
                     return (
                         <div className="bg-light" key={index}>
-                            <button className="btn btn-lg btn-primary" data-name={size.name}>
+                            <button
+                                className="btn btn-lg btn-primary"
+                                data-name={size.name}
+                            >
                                 {size.name}
                             </button>
                         </div>
