@@ -1,13 +1,14 @@
-export default function FillingsSelector({ addFilling, fillings, title }) {
+export default function FillingsSelector({ hamburger, setHamburger, fillings, title }) {
     function handleClick(filling, event) {
-        // event.target.hidden = true;
-        // if (addFillingListener) {
-        //     addFillingListener(filling);
-        // }
+        hamburger.addTopping(filling);
+        console.log({ ...hamburger.to });
+        // setHamburger(...hamburger);
+
+        event.target.hidden = true;
     }
 
     return (
-        <div className="col-6 rounded-3 border me-2">
+        <div className="col-6 rounded-3 border">
             <div className="d-flex justify-content-between">
                 <div className="mx-3 mt-2">
                     <h4>{title}</h4>

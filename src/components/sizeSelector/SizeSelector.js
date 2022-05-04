@@ -14,7 +14,7 @@ export default function SizeSelector({ sizes, setHamburger }) {
                             <button
                                 className="btn btn-lg btn-primary"
                                 data-name={size.name}
-                                onClick={(event) => selectSize(size, event)}
+                                onClick={() => selectSize(size)}
                             >
                                 {size.name}
                             </button>

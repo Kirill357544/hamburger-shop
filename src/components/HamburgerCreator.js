@@ -20,7 +20,8 @@ export default function HamburgerCreator() {
                     <Info hamburger={hamburger} />
                     <div className="d-flex justify-content-between">
                         <FillingsSelector
-                            addFilling={hamburger.addTopping}
+                            hamburger={hamburger}
+                            setHamburger={setHamburger}
                             fillings={Hamburger.TOPPINGS}
                             title="Toppings"
                         />
