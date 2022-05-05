@@ -1,5 +1,6 @@
 import SizeSelector from "./sizeSelector/SizeSelector";
 import FillingsSelector from "./fillingsSelector/FillingsSelector";
+import Check from "./check/Check";
 import Info from "./info/Info";
 import { useState } from "react";
 import SIZES from "../Sizes";
@@ -14,10 +15,12 @@ export default function HamburgerCreator() {
     };
 
     const handleAddTopping = (topping) => {
-        setHamburger((prevState) => {
-            prevState.toppings.push(topping);
-            return JSON.parse(JSON.stringify(prevState));
-        });
+        if (hamburger.toppings.length !== hamburger.size.maxTopping) {
+            setHamburger((prevState) => {
+                prevState.toppings.push(topping);
+                return JSON.parse(JSON.stringify(prevState));
+            });
+        }
     };
 
     const handleRemoveTopping = (topping) => {
@@ -53,7 +56,10 @@ export default function HamburgerCreator() {
             ) : (
                 <>
                     <h1 className="mb-3 pb-3 border-bottom">Build up your favorite hamburger</h1>
-                    <Info hamburger={hamburger} />
+                    <div className="d-flex justify-content-between">
+                        <Info hamburger={hamburger} />
+                        <Check hamburger={hamburger} />
+                    </div>
                     <div className="d-flex justify-content-between">
                         <FillingsSelector
                             selectedFillings={hamburger.toppings}
