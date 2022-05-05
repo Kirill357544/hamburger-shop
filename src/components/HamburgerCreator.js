@@ -12,8 +12,10 @@ export default function HamburgerCreator() {
     };
 
     const handleToppingSelect = (topping) => {
-        hamburger.addTopping(topping);
-        setHamburger(hamburger);
+        setHamburger(() => {
+            hamburger.addTopping(topping);
+            setHamburger(hamburger);
+        });
     };
 
     return (
