@@ -2,11 +2,7 @@
     background-color: #f0f0f0;
 }
 
-dl > div {
-    display: flex;
-    justify-content: center;
-}
-
-dl > div > dt {
-    margin-right: 60px;
+div > dd,
+div > dt {
+    width: 10px;
 }
