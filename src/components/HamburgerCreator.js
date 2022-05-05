@@ -1,5 +1,5 @@
-import SizeSelector from "./sizeSelector/SizeSelector";
-import FillingsSelector from "./fillingsSelector/FillingsSelector";
+import SizeSelector from "./size-selector/SizeSelector";
+import FillingsSelector from "./fillings-selector/FillingsSelector";
 import Check from "./check/Check";
 import Info from "./info/Info";
 import { useState } from "react";

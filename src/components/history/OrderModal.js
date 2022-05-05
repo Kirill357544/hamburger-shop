@@ -23,6 +23,18 @@ export default function OrderModal({ order, onClose }) {
                             <div>Size</div>
                             <div>{order.size}</div>
                         </div>
+                        {order.toppings.map((filling) => (
+                            <div className="d-flex justify-content-between" key={filling.name}>
+                                <div>{filling.name}</div>
+                                <div>{formatPrice(filling.price)}</div>
+                            </div>
+                        ))}
+                        {order.stuffings.map((filling) => (
+                            <div className="d-flex justify-content-between" key={filling.name}>
+                                <div>{filling.name}</div>
+                                <div>{formatPrice(filling.price)}</div>
+                            </div>
+                        ))}
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-danger" onClick={onClose}>

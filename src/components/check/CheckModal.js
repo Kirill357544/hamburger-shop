@@ -1,8 +1,23 @@
 import formatPrice from "../../formatter/formatPrice";
 import calculatePrice from "../../calculatePrice";
 import calculateCalories from "../../calculateCalories";
+import OrderStorage from "../../OrderStorage";
 
 export default function CheckModal({ hamburger, onClose }) {
+    function handleBuyClick() {
+        const order = {
+            date: Date.now(),
+            totalPrice: 0,
+            count: 0,
+            size: hamburger.size.name,
+            toppings: hamburger.toppings,
+            stuffings: hamburger.stuffings,
+        };
+
+        OrderStorage.add(order);
+        onClose();
+    }
+
     return (
         <div className="modal bg-dark bg-opacity-75" style={{ display: "block" }}>
             <div className="modal-dialog modal-dialog-centered">
@@ -38,6 +53,9 @@ export default function CheckModal({ hamburger, onClose }) {
                         ))}
                     </div>
                     <div className="modal-footer">
+                        <button type="button" className="btn btn-success" onClick={handleBuyClick}>
+                            Buy
+                        </button>
                         <button type="button" className="btn btn-danger" onClick={onClose}>
                             Close
                         </button>
