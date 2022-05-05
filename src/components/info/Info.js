@@ -1,8 +1,10 @@
 import formatPrice from "../../formatter/formatPrice";
+import calculatePrice from "../../calculatePrice";
+import calculateCalories from "../../calculateCalories";
 
 export default function Info({ hamburger }) {
     return (
-        <div className="col-4 mb-4">
+        <div className="col-4 mb-5">
             <dl className="border-bottom">
                 <div>
                     <dt>Size</dt>
@@ -18,13 +20,13 @@ export default function Info({ hamburger }) {
                 </div>
                 <div>
                     <dt>Calories</dt>
-                    <dd>{hamburger.calculateCalories()}</dd>
+                    <dd>{calculateCalories(hamburger)}</dd>
                 </div>
             </dl>
             <dl className="dl-horizontal">
                 <div>
                     <dt>Price</dt>
-                    <dd>{formatPrice(hamburger.calculatePrice())}</dd>
+                    <dd>{formatPrice(calculatePrice(hamburger))}</dd>
                 </div>
             </dl>
         </div>

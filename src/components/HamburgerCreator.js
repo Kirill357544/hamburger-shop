@@ -1,20 +1,45 @@
 import SizeSelector from "./sizeSelector/SizeSelector";
 import FillingsSelector from "./fillingsSelector/FillingsSelector";
 import Info from "./info/Info";
-import Hamburger from "../Hamburger";
 import { useState } from "react";
+import SIZES from "../Sizes";
+import TOPPINGS from "../Toppings";
+import STUFFINGS from "../Stuffings";
 
 export default function HamburgerCreator() {
-    const [hamburger, setHamburger] = useState(null);
+    let [hamburger, setHamburger] = useState(null);
 
     const handleSizeSelect = (size) => {
-        setHamburger(new Hamburger(size));
+        setHamburger({ size, toppings: [], stuffings: [] });
     };
 
-    const handleToppingSelect = (topping) => {
-        setHamburger(() => {
-            hamburger.addTopping(topping);
-            setHamburger(hamburger);
+    const handleAddTopping = (topping) => {
+        setHamburger((prevState) => {
+            prevState.toppings.push(topping);
+            return JSON.parse(JSON.stringify(prevState));
+        });
+    };
+
+    const handleRemoveTopping = (topping) => {
+        setHamburger((prevState) => {
+            const index = hamburger.toppings.indexOf(topping);
+            hamburger.toppings.splice(index, 1);
+            return JSON.parse(JSON.stringify(prevState));
+        });
+    };
+
+    const handleAddStuffing = (stuffing) => {
+        setHamburger((prevState) => {
+            prevState.stuffings.push(stuffing);
+            return JSON.parse(JSON.stringify(prevState));
+        });
+    };
+
+    const handleRemoveStuffing = (stuffing) => {
+        setHamburger((prevState) => {
+            const index = hamburger.stuffings.indexOf(stuffing);
+            hamburger.stuffings.splice(index, 1);
+            return JSON.parse(JSON.stringify(prevState));
         });
     };
 
@@ -23,7 +48,7 @@ export default function HamburgerCreator() {
             {hamburger === null ? (
                 <>
                     <h1 className="mb-3 pb-3 border-bottom">Select Size</h1>
-                    <SizeSelector sizes={Hamburger.SIZES} onSelect={handleSizeSelect} />
+                    <SizeSelector sizes={SIZES} onSelect={handleSizeSelect} />
                 </>
             ) : (
                 <>
@@ -31,9 +56,18 @@ export default function HamburgerCreator() {
                     <Info hamburger={hamburger} />
                     <div className="d-flex justify-content-between">
                         <FillingsSelector
-                            onAdd={handleToppingSelect}
-                            fillings={Hamburger.TOPPINGS}
-                            title="Toppings"
+                            selectedFillings={hamburger.toppings}
+                            onAdd={handleAddTopping}
+                            onRemove={handleRemoveTopping}
+                            fillings={TOPPINGS}
+                            title="Topping"
+                        />
+                        <FillingsSelector
+                            selectedFillings={hamburger.stuffings}
+                            onAdd={handleAddStuffing}
+                            onRemove={handleRemoveStuffing}
+                            fillings={STUFFINGS}
+                            title="Stuffing"
                         />
                     </div>
                 </>

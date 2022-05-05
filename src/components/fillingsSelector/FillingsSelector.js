@@ -1,11 +1,19 @@
-export default function FillingsSelector({ onAdd, fillings, title }) {
+import formatPrice from "../../formatter/formatPrice";
+
+export default function FillingsSelector({ selectedFillings, onAdd, onRemove, fillings, title }) {
+    const freeFillings = fillings
+        .filter(
+            (filling) => !selectedFillings.find((selectedFilling) => selectedFilling.name === filling.name)
+        )
+        .sort((prev, next) => prev.name.localeCompare(next.name));
+
     return (
-        <div className="col-6 rounded-3 border">
-            <div className="d-flex justify-content-between">
-                <div className="mx-3 mt-2">
+        <div className="col-5 rounded-3">
+            <div className="d-flex justify-content-between bg-primary bg-opacity-10 rounded-top">
+                <div className="m-2">
                     <h4>{title}</h4>
                 </div>
-                <div className="mx-3 mt-2">
+                <div className="m-2">
                     <div className="dropdown">
                         <button
                             className="btn btn-success dropdown-toggle"
@@ -13,13 +21,14 @@ export default function FillingsSelector({ onAdd, fillings, title }) {
                             id="dropdownMenuButton"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
+                            disabled={selectedFillings.length === fillings.length ? true : false}
                         >
                             Add {title}
                         </button>
                         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            {fillings.map((filling) => {
+                            {freeFillings.map((filling) => {
                                 return (
-                                    <li key={filling.name} onClick={(event) => onAdd(filling, event)}>
+                                    <li key={filling.name} onClick={() => onAdd(filling)}>
                                         <span className="dropdown-item">{filling.name}</span>
                                     </li>
                                 );
@@ -28,7 +37,7 @@ export default function FillingsSelector({ onAdd, fillings, title }) {
                     </div>
                 </div>
             </div>
-            <table className="table m-0">
+            <table className="table border">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -38,16 +47,24 @@ export default function FillingsSelector({ onAdd, fillings, title }) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Index</td>
-                        <td width="50%">Name</td>
-                        <td width="50%">Price</td>
-                        <td width="auto">
-                            <button data-name="name" className="btn btn-sm btn-danger">
-                                <i className="bi bi-x-lg"></i>
-                            </button>
-                        </td>
-                    </tr>
+                    {selectedFillings.map((filling, index) => {
+                        return (
+                            <tr key={filling.name}>
+                                <td>{index + 1}</td>
+                                <td width="50%">{filling.name}</td>
+                                <td width="40%">{formatPrice(filling.price)}</td>
+                                <td width="auto">
+                                    <button
+                                        data-name="name"
+                                        className="btn btn-sm btn-danger"
+                                        onClick={() => onRemove(filling)}
+                                    >
+                                        <i className="bi bi-x-lg"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </div>

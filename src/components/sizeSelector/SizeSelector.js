@@ -1,7 +1,7 @@
 export default function SizeSelector({ sizes, onSelect }) {
     return (
         <>
-            <div className="p-5 bg-light rounded-3 d-flex justify-content-around">
+            <div className="p-5 bg-light rounded-3 border d-flex justify-content-around">
                 {sizes.map((size, index) => {
                     return (
                         <div className="bg-light" key={index}>
