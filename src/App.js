@@ -1,6 +1,6 @@
 import HomePage from "./pages/home/HomePage";
 import ToppingsPage from "./pages/toppings/ToppingsPage";
-import StuffingsPage from "./pages/stuffings/StuffingsPage.js";
+import StuffingsPage from "./pages/stuffings/StuffingsPage";
 import HistoryPage from "./pages/history/HistoryPage";
 import OrderPage from "./pages/order/OrderPage";
 import OrderButton from "./components/header/OrderButton";
