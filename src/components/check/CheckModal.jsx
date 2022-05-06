@@ -3,12 +3,12 @@ import calculatePrice from "../../calculatePrice";
 import calculateCalories from "../../calculateCalories";
 import OrderStorage from "../../OrderStorage";
 
-export default function CheckModal({ hamburger, onClose }) {
+export default function CheckModal({ hamburger, countAndPrice, onClose }) {
     function handleBuyClick() {
         const order = {
             date: Date.now(),
-            totalPrice: 0,
-            count: 0,
+            totalPrice: countAndPrice.totalPrice,
+            count: countAndPrice.count,
             size: hamburger.size.name,
             toppings: hamburger.toppings,
             stuffings: hamburger.stuffings,
@@ -27,6 +27,14 @@ export default function CheckModal({ hamburger, onClose }) {
                         <button type="button" className="btn-close" onClick={onClose} />
                     </div>
                     <div className="modal-body">
+                        <div className="d-flex justify-content-between">
+                            <div>Total price</div>
+                            <div>{formatPrice(countAndPrice.totalPrice)}</div>
+                        </div>
+                        <div className="d-flex justify-content-between">
+                            <div>Count</div>
+                            <div>{countAndPrice.count}</div>
+                        </div>
                         <div className="d-flex justify-content-between">
                             <div>Size</div>
                             <div>{hamburger.size.name}</div>

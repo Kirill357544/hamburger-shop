@@ -8,7 +8,7 @@ export default function FillingsSelector({ selectedFillings, onAdd, onRemove, fi
         .sort((prev, next) => prev.name.localeCompare(next.name));
 
     return (
-        <div className="col-5 rounded-3">
+        <div className="col-5 rounded-3 mb-3">
             <div className="d-flex justify-content-between bg-primary bg-opacity-10 rounded-top">
                 <div className="m-2">
                     <h4>{title}</h4>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CheckModal from "./CheckModal";
 
-export default function Check({ hamburger }) {
+export default function Check({ hamburger, countAndPrice }) {
     const [check, setCheck] = useState(null);
 
     return (
@@ -12,7 +12,13 @@ export default function Check({ hamburger }) {
                     Buy It!
                 </button>
             </div>
-            {check !== null && <CheckModal hamburger={hamburger} onClose={() => setCheck(null)} />}
+            {check !== null && (
+                <CheckModal
+                    hamburger={hamburger}
+                    countAndPrice={countAndPrice}
+                    onClose={() => setCheck(null)}
+                />
+            )}
         </>
     );
 }

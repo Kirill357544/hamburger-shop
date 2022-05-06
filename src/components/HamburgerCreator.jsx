@@ -6,18 +6,29 @@ import { useState } from "react";
 import SIZES from "../Sizes";
 import TOPPINGS from "../Toppings";
 import STUFFINGS from "../Stuffings";
+import CountAndPrice from "./count-and-price/CountAndPrice";
+import { MIN_COUNT } from "../Counts";
+import calculatePrice from "../calculatePrice";
 
 export default function HamburgerCreator() {
     let [hamburger, setHamburger] = useState(null);
+    let [countAndPrice, setCountAndPrice] = useState({
+        count: MIN_COUNT,
+        totalPrice: 4.5,
+    });
 
     const handleSizeSelect = (size) => {
-        setHamburger({ size, toppings: [], stuffings: [] });
+        setHamburger(() => ({ size, toppings: [], stuffings: [] }));
     };
 
     const handleAddTopping = (topping) => {
         if (hamburger.toppings.length !== hamburger.size.maxTopping) {
             setHamburger((prevState) => {
                 prevState.toppings.push(topping);
+                return JSON.parse(JSON.stringify(prevState));
+            });
+            setCountAndPrice((prevState) => {
+                countAndPrice.totalPrice = calculatePrice(hamburger) * countAndPrice.count;
                 return JSON.parse(JSON.stringify(prevState));
             });
         }
@@ -29,11 +40,19 @@ export default function HamburgerCreator() {
             hamburger.toppings.splice(index, 1);
             return JSON.parse(JSON.stringify(prevState));
         });
+        setCountAndPrice((prevState) => {
+            countAndPrice.totalPrice = calculatePrice(hamburger) * countAndPrice.count;
+            return JSON.parse(JSON.stringify(prevState));
+        });
     };
 
     const handleAddStuffing = (stuffing) => {
         setHamburger((prevState) => {
             prevState.stuffings.push(stuffing);
+            return JSON.parse(JSON.stringify(prevState));
+        });
+        setCountAndPrice((prevState) => {
+            countAndPrice.totalPrice = calculatePrice(hamburger) * countAndPrice.count;
             return JSON.parse(JSON.stringify(prevState));
         });
     };
@@ -42,6 +61,10 @@ export default function HamburgerCreator() {
         setHamburger((prevState) => {
             const index = hamburger.stuffings.indexOf(stuffing);
             hamburger.stuffings.splice(index, 1);
+            return JSON.parse(JSON.stringify(prevState));
+        });
+        setCountAndPrice((prevState) => {
+            countAndPrice.totalPrice = calculatePrice(hamburger) * countAndPrice.count;
             return JSON.parse(JSON.stringify(prevState));
         });
     };
@@ -58,7 +81,7 @@ export default function HamburgerCreator() {
                     <h1 className="mb-3 pb-3 border-bottom">Build up your favorite hamburger</h1>
                     <div className="d-flex justify-content-between">
                         <Info hamburger={hamburger} />
-                        <Check hamburger={hamburger} />
+                        <Check hamburger={hamburger} countAndPrice={countAndPrice} />
                     </div>
                     <div className="d-flex justify-content-between">
                         <FillingsSelector
@@ -76,6 +99,12 @@ export default function HamburgerCreator() {
                             title="Stuffing"
                         />
                     </div>
+                    <div className="border-bottom mb-4" />
+                    <CountAndPrice
+                        hamburger={hamburger}
+                        countAndPrice={countAndPrice}
+                        setCountAndPrice={setCountAndPrice}
+                    />
                 </>
             )}
         </>
