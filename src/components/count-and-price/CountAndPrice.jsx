@@ -1,7 +1,7 @@
 import { MIN_COUNT, MAX_COUNT } from "../../data/Counts";
 import formatPrice from "../../formatter/formatPrice";
 
-export default function CountAndPrice({ order, handleCountBlur }) {
+export default function CountAndPrice({ order, onCountBlur }) {
     return (
         <div className="col-12">
             <form>
@@ -15,7 +15,7 @@ export default function CountAndPrice({ order, handleCountBlur }) {
                             defaultValue={order.count}
                             min={MIN_COUNT}
                             max={MAX_COUNT}
-                            onBlur={(event) => handleCountBlur(event)}
+                            onBlur={(event) => onCountBlur(event)}
                         />
                     </div>
                 </div>

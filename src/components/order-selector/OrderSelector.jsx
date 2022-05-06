@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MIN_COUNT, MAX_COUNT } from "../../data/Counts";
 import calculatePrice from "../../calculate/calculatePrice";
 import Info from "../info/Info";
@@ -7,7 +8,13 @@ import CountAndPrice from "../count-and-price/CountAndPrice";
 import STUFFINGS from "../../data/Stuffings";
 import TOPPINGS from "../../data/Toppings";
 
-export default function OrderSelector({ order, setOrder }) {
+export default function OrderSelector({ hamburger }) {
+    const [order, setOrder] = useState({
+        hamburger: JSON.parse(JSON.stringify(hamburger)),
+        totalPrice: hamburger.size.price,
+        count: MIN_COUNT,
+    });
+
     const handleAddTopping = (topping) => {
         if (order.hamburger.toppings.length !== order.hamburger.size.maxTopping) {
             setOrder((prevState) => {
@@ -86,7 +93,7 @@ export default function OrderSelector({ order, setOrder }) {
                 />
             </div>
             <div className="border-bottom mb-4" />
-            <CountAndPrice order={order} handleCountBlur={handleCountBlur} />
+            <CountAndPrice order={order} onCountBlur={handleCountBlur} />
         </>
     );
 }

@@ -1,23 +1,22 @@
 import { useState } from "react";
 import SIZES from "../../data/Sizes";
-import { MIN_COUNT } from "../../data/Counts";
 import SizeSelector from "../size-selector/SizeSelector";
 import OrderSelector from "../order-selector/OrderSelector";
 
 export default function OrderCreator() {
-    const [order, setOrder] = useState(null);
+    const [hamburger, setHamburger] = useState(null);
 
     const handleSizeSelect = (size) => {
-        setOrder({
-            hamburger: { size, toppings: [], stuffings: [] },
-            count: MIN_COUNT,
-            totalPrice: size.price,
+        setHamburger({
+            size,
+            toppings: [],
+            stuffings: [],
         });
     };
 
     return (
         <>
-            {order === null ? (
+            {hamburger === null ? (
                 <>
                     <h1 className="mb-3 pb-3 border-bottom">Select Size</h1>
                     <SizeSelector sizes={SIZES} onSelect={handleSizeSelect} />
@@ -25,7 +24,7 @@ export default function OrderCreator() {
             ) : (
                 <>
                     <h1 className="mb-3 pb-3 border-bottom">Build up your favorite hamburger</h1>
-                    <OrderSelector order={order} setOrder={setOrder} />
+                    <OrderSelector hamburger={hamburger} />
                 </>
             )}
         </>
