@@ -4,7 +4,11 @@ import formatPrice from "../../formatter/formatPrice";
 export default function CountAndPrice({ count, totalPrice, onCountBlur }) {
     return (
         <div className="col-12">
-            <form>
+            <form
+                onSubmit={(event) => {
+                    event.preventDefault();
+                }}
+            >
                 <div className="d-flex justify-content-end mb-2">
                     <label className="fw-bold me-4" htmlFor="count">
                         Count:
