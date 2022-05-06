@@ -1,5 +1,5 @@
+import STUFFINGS from "../../data/Stuffings";
 import Fillings from "../../components/fillings/Fillings";
-import STUFFINGS from "../../Stuffings";
 
 export default function StuffingsPage() {
     return (

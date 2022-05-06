@@ -1,8 +1,7 @@
-import SizeSelector from "../size-selector/SizeSelector";
 import { useState } from "react";
-import SIZES from "../../Sizes";
-import { MIN_COUNT } from "../../Counts";
-
+import SIZES from "../../data/Sizes";
+import { MIN_COUNT } from "../../data/Counts";
+import SizeSelector from "../size-selector/SizeSelector";
 import OrderSelector from "../order-selector/OrderSelector";
 
 export default function OrderCreator() {

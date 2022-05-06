@@ -1,5 +1,5 @@
+import TOPPINGS from "../../data/Toppings";
 import Fillings from "../../components/fillings/Fillings";
-import TOPPINGS from "../../Toppings";
 
 export default function ToppingsPage() {
     return (

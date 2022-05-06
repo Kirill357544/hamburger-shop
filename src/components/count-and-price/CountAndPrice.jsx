@@ -1,4 +1,4 @@
-import { MIN_COUNT, MAX_COUNT } from "../../Counts";
+import { MIN_COUNT, MAX_COUNT } from "../../data/Counts";
 import formatPrice from "../../formatter/formatPrice";
 
 export default function CountAndPrice({ order, handleCountBlur }) {

@@ -1,6 +1,6 @@
 import formatPrice from "../../formatter/formatPrice";
-import calculatePrice from "../../calculatePrice";
-import calculateCalories from "../../calculateCalories";
+import calculatePrice from "../../calculate/calculatePrice";
+import calculateCalories from "../../calculate/calculateCalories";
 import OrderStorage from "../../OrderStorage";
 
 export default function CheckModal({ order, onClose }) {

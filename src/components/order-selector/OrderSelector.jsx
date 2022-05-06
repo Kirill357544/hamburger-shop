@@ -1,11 +1,11 @@
+import { MIN_COUNT, MAX_COUNT } from "../../data/Counts";
+import calculatePrice from "../../calculate/calculatePrice";
 import Info from "../info/Info";
 import Check from "../check/Check";
 import FillingsSelector from "../fillings-selector/FillingsSelector";
 import CountAndPrice from "../count-and-price/CountAndPrice";
-import STUFFINGS from "../../Stuffings";
-import TOPPINGS from "../../Toppings";
-import calculatePrice from "../../calculatePrice";
-import { MIN_COUNT, MAX_COUNT } from "../../Counts";
+import STUFFINGS from "../../data/Stuffings";
+import TOPPINGS from "../../data/Toppings";
 
 export default function OrderSelector({ order, setOrder }) {
     const handleAddTopping = (topping) => {

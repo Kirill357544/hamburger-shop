@@ -1,5 +1,5 @@
-import History from "../../components/history/History";
 import OrderStorage from "../../OrderStorage";
+import History from "../../components/history/History";
 
 export default function HistoryPage() {
     return (

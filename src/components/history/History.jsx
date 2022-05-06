@@ -1,7 +1,7 @@
+import { useState } from "react";
 import OrderModal from "./OrderModal";
 import formatDate from "../../formatter/formatDate";
 import formatPrice from "../../formatter/formatPrice";
-import { useState } from "react";
 
 export default function History({ OrderStorage }) {
     const orders = OrderStorage.orders;

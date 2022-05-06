@@ -1,6 +1,6 @@
 import formatPrice from "../../formatter/formatPrice";
-import calculatePrice from "../../calculatePrice";
-import calculateCalories from "../../calculateCalories";
+import calculatePrice from "../../calculate/calculatePrice";
+import calculateCalories from "../../calculate/calculateCalories";
 
 export default function Info({ hamburger }) {
     return (
