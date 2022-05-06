@@ -1,5 +1,5 @@
-import HamburgerCreator from "../../components/HamburgerCreator";
+import OrderCreator from "../../components/OrderCreator";
 
 export default function OrderPage() {
-    return <HamburgerCreator />;
+    return <OrderCreator />;
 }

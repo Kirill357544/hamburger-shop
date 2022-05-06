@@ -24,7 +24,7 @@ export default function History({ OrderStorage }) {
                         return (
                             <tr key={index}>
                                 <td>{formatDate(order.date)}</td>
-                                <td>{order.size} Hamburger</td>
+                                <td>{order.hamburger.size.name} Hamburger</td>
                                 <td>{order.count}</td>
                                 <td>{formatPrice(order.totalPrice)}</td>
                                 <td>

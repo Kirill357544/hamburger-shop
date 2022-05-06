@@ -21,15 +21,15 @@ export default function OrderModal({ order, onClose }) {
                         </div>
                         <div className="d-flex justify-content-between">
                             <div>Size</div>
-                            <div>{order.size}</div>
+                            <div>{order.hamburger.size.name}</div>
                         </div>
-                        {order.toppings.map((filling) => (
+                        {order.hamburger.toppings.map((filling) => (
                             <div className="d-flex justify-content-between" key={filling.name}>
                                 <div>{filling.name}</div>
                                 <div>{formatPrice(filling.price)}</div>
                             </div>
                         ))}
-                        {order.stuffings.map((filling) => (
+                        {order.hamburger.stuffings.map((filling) => (
                             <div className="d-flex justify-content-between" key={filling.name}>
                                 <div>{filling.name}</div>
                                 <div>{formatPrice(filling.price)}</div>

@@ -1,27 +1,7 @@
 import { MIN_COUNT, MAX_COUNT } from "../../Counts";
-import calculatePrice from "../../calculatePrice";
 import formatPrice from "../../formatter/formatPrice";
 
-export default function CountAndPrice({ hamburger, countAndPrice, setCountAndPrice }) {
-    function handleCountBlur(event) {
-        let currentValue = event.target.valueAsNumber;
-
-        if (currentValue !== countAndPrice.count) {
-            if (currentValue > MAX_COUNT) {
-                currentValue = MAX_COUNT;
-                event.target.value = currentValue;
-            } else if (currentValue < MIN_COUNT) {
-                currentValue = MIN_COUNT;
-                event.target.value = currentValue;
-            }
-            setCountAndPrice((prevState) => {
-                countAndPrice.count = currentValue;
-                countAndPrice.totalPrice = calculatePrice(hamburger) * countAndPrice.count;
-                return JSON.parse(JSON.stringify(prevState));
-            });
-        }
-    }
-
+export default function CountAndPrice({ order, handleCountBlur }) {
     return (
         <div className="col-12">
             <form>
@@ -32,16 +12,16 @@ export default function CountAndPrice({ hamburger, countAndPrice, setCountAndPri
                     <div className="col-1">
                         <input
                             type="number"
-                            defaultValue={countAndPrice.count}
+                            defaultValue={order.count}
                             min={MIN_COUNT}
                             max={MAX_COUNT}
-                            onBlur={handleCountBlur}
+                            onBlur={(event) => handleCountBlur(event)}
                         />
                     </div>
                 </div>
                 <div className="d-flex justify-content-end">
                     <label className="fw-bold me-4">Total:</label>
-                    <div className="col-1">{formatPrice(countAndPrice.totalPrice)}</div>
+                    <div className="col-1">{formatPrice(order.totalPrice)}</div>
                 </div>
             </form>
         </div>

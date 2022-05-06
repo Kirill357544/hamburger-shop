@@ -6,7 +6,6 @@ import OrderPage from "./pages/order/OrderPage";
 import OrderButton from "./components/header/OrderButton";
 import Layout from "./Layout";
 import { Routes, Route } from "react-router-dom";
-import OrderLabel from "./components/header/OrderLabel";
 
 export default function App() {
     return (

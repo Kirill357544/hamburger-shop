@@ -3,18 +3,9 @@ import calculatePrice from "../../calculatePrice";
 import calculateCalories from "../../calculateCalories";
 import OrderStorage from "../../OrderStorage";
 
-export default function CheckModal({ hamburger, countAndPrice, onClose }) {
+export default function CheckModal({ order, onClose }) {
     function handleBuyClick() {
-        const order = {
-            date: Date.now(),
-            totalPrice: countAndPrice.totalPrice,
-            count: countAndPrice.count,
-            size: hamburger.size.name,
-            toppings: hamburger.toppings,
-            stuffings: hamburger.stuffings,
-        };
-
-        OrderStorage.add(order);
+        OrderStorage.add({ date: Date.now(), ...JSON.parse(JSON.stringify(order)) });
         onClose();
     }
 
@@ -29,31 +20,31 @@ export default function CheckModal({ hamburger, countAndPrice, onClose }) {
                     <div className="modal-body">
                         <div className="d-flex justify-content-between">
                             <div>Total price</div>
-                            <div>{formatPrice(countAndPrice.totalPrice)}</div>
+                            <div>{formatPrice(order.totalPrice)}</div>
                         </div>
                         <div className="d-flex justify-content-between">
                             <div>Count</div>
-                            <div>{countAndPrice.count}</div>
+                            <div>{order.count}</div>
                         </div>
                         <div className="d-flex justify-content-between">
                             <div>Size</div>
-                            <div>{hamburger.size.name}</div>
+                            <div>{order.hamburger.size.name}</div>
                         </div>
                         <div className="d-flex justify-content-between">
                             <div>Price</div>
-                            <div>{formatPrice(calculatePrice(hamburger))}</div>
+                            <div>{formatPrice(calculatePrice(order.hamburger))}</div>
                         </div>
                         <div className="d-flex justify-content-between">
                             <div>Calories</div>
-                            <div>{calculateCalories(hamburger)}</div>
+                            <div>{calculateCalories(order.hamburger)}</div>
                         </div>
-                        {hamburger.toppings.map((filling) => (
+                        {order.hamburger.toppings.map((filling) => (
                             <div className="d-flex justify-content-between" key={filling.name}>
                                 <div>{filling.name}</div>
                                 <div>{formatPrice(filling.price)}</div>
                             </div>
                         ))}
-                        {hamburger.stuffings.map((filling) => (
+                        {order.hamburger.stuffings.map((filling) => (
                             <div className="d-flex justify-content-between" key={filling.name}>
                                 <div>{filling.name}</div>
                                 <div>{formatPrice(filling.price)}</div>
