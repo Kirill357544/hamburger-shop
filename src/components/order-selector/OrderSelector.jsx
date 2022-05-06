@@ -93,7 +93,7 @@ export default function OrderSelector({ hamburger }) {
                 />
             </div>
             <div className="border-bottom mb-4" />
-            <CountAndPrice order={order} onCountBlur={handleCountBlur} />
+            <CountAndPrice count={order.count} totalPrice={order.totalPrice} onCountBlur={handleCountBlur} />
         </>
     );
 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import formatPrice from "../../formatter/formatPrice";
 import calculatePrice from "../../calculate/calculatePrice";
 import calculateCalories from "../../calculate/calculateCalories";
@@ -52,9 +53,14 @@ export default function CheckModal({ order, onClose }) {
                         ))}
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-success" onClick={handleBuyClick}>
+                        <Link
+                            type="button"
+                            className="btn btn-success"
+                            onClick={handleBuyClick}
+                            to="/history"
+                        >
                             Buy
-                        </button>
+                        </Link>
                         <button type="button" className="btn btn-danger" onClick={onClose}>
                             Close
                         </button>
