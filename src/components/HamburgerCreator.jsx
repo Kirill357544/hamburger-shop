@@ -11,14 +11,18 @@ import { MIN_COUNT } from "../Counts";
 import calculatePrice from "../calculatePrice";
 
 export default function HamburgerCreator() {
-    let [hamburger, setHamburger] = useState(null);
-    let [countAndPrice, setCountAndPrice] = useState({
-        count: MIN_COUNT,
-        totalPrice: 4.5,
-    });
+    const [order, setOrder] = useState(null);
+
+    // let [hamburger, setHamburger] = useState(null);
+    // let [countAndPrice, setCountAndPrice] = useState({
+    //     count: MIN_COUNT,
+    //     totalPrice: 4.5,
+    // });
 
     const handleSizeSelect = (size) => {
-        setHamburger(() => ({ size, toppings: [], stuffings: [] }));
+        setOrder({ hamburger: { size, toppings: [], stuffings: [] }, count: MIN_COUNT, totalPrice: null });
+
+        // setHamburger(() => ({ size, toppings: [], stuffings: [] }));
     };
 
     const handleAddTopping = (topping) => {
