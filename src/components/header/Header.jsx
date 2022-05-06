@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 export default function Header({ order }) {
     return (
         <>
-            <header className="mb-4 border">
+            <header className="mb-4 border sticky-top">
                 <nav className="navbar navbar-expand-lg navbar-light bg-light p-0">
                     <div className="container">
                         <div className="collapse navbar-collapse">
