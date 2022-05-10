@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MIN_COUNT, MAX_COUNT } from "../../data/Counts";
+import { MIN_COUNT } from "../../data/Counts";
 import calculatePrice from "../../calculate/calculatePrice";
 import Info from "../info/Info";
 import Check from "../check/Check";
@@ -14,6 +14,8 @@ export default function OrderSelector({ hamburger }) {
         count: MIN_COUNT,
     });
 
+    console.log(order);
+
     const totalPrice = calculatePrice(order.hamburger) * order.count;
 
     const handleAddTopping = (topping) => {
@@ -27,9 +29,14 @@ export default function OrderSelector({ hamburger }) {
 
     const handleRemoveTopping = (topping) => {
         setOrder((prevState) => {
-            const index = prevState.hamburger.toppings.indexOf(topping);
-            prevState.hamburger.toppings.splice(index, 1);
-            return JSON.parse(JSON.stringify(prevState));
+            const toppings = prevState.hamburger.toppings.filter((t) => t !== topping);
+            return {
+                ...prevState,
+                hamburger: {
+                    ...prevState.hamburger,
+                    toppings,
+                },
+            };
         });
     };
 
@@ -54,14 +61,8 @@ export default function OrderSelector({ hamburger }) {
     };
 
     const handleCountChange = (newCount) => {
-        if (newCount !== order.count) {
-            if (newCount > MAX_COUNT) {
-                newCount = MAX_COUNT;
-            } else if (newCount < MIN_COUNT) {
-                newCount = MIN_COUNT;
-            }
-            setOrder({ count: newCount });
-        }
+        console.log(newCount);
+        setOrder({ count: newCount });
     };
 
     return (

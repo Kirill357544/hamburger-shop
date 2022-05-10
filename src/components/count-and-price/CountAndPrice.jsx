@@ -2,6 +2,17 @@ import { MIN_COUNT, MAX_COUNT } from "../../data/Counts";
 import Price from "../Price/Price";
 
 export default function CountAndPrice({ count, totalPrice, onCountChange }) {
+    function handleCountChange(newCount) {
+        if (newCount !== count) {
+            if (newCount > MAX_COUNT) {
+                newCount = MAX_COUNT;
+            } else if (newCount < MIN_COUNT) {
+                newCount = MIN_COUNT;
+            }
+            onCountChange(newCount);
+        }
+    }
+
     return (
         <div className="col-12">
             <form
@@ -20,7 +31,7 @@ export default function CountAndPrice({ count, totalPrice, onCountChange }) {
                             defaultValue={count}
                             min={MIN_COUNT}
                             max={MAX_COUNT}
-                            onBlur={(event) => onCountChange(event.target.valueAsNumber)}
+                            onBlur={(event) => handleCountChange(event.target.valueAsNumber)}
                         />
                     </div>
                 </div>
