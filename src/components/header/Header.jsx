@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 
-export default function Header({ order }) {
+export default function Header() {
     return (
         <>
             <header className="mb-4 border sticky-top">
@@ -29,7 +29,12 @@ export default function Header({ order }) {
                                     </NavLink>
                                 </li>
                             </ul>
-                            <div className="d-flex">{order()}</div>
+                            <div className="d-flex">
+                                <Link className="btn btn-success" to="order">
+                                    <i className="me-2 bi bi-bag-plus"></i>
+                                    New Order
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </nav>
