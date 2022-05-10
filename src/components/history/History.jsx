@@ -1,7 +1,7 @@
 import { useState } from "react";
 import OrderModal from "./OrderModal";
 import formatDate from "../../formatter/formatDate";
-import formatPrice from "../../formatter/formatPrice";
+import Price from "../Price/Price";
 
 export default function History({ OrderStorage }) {
     const orders = OrderStorage.orders;
@@ -20,24 +20,24 @@ export default function History({ OrderStorage }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {orders.reverse().map((order, index) => {
-                        return (
-                            <tr key={index}>
-                                <td>{formatDate(order.date)}</td>
-                                <td>{order.hamburger.size.name} Hamburger</td>
-                                <td>{order.count}</td>
-                                <td>{formatPrice(order.totalPrice)}</td>
-                                <td>
-                                    <button
-                                        className="btn btn-outline-secondary"
-                                        onClick={() => setOrderModal(order)}
-                                    >
-                                        <i className="bi bi-list"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        );
-                    })}
+                    {orders.reverse().map((order, index) => (
+                        <tr key={index}>
+                            <td>{formatDate(order.date)}</td>
+                            <td>{order.hamburger.size.name} Hamburger</td>
+                            <td>{order.count}</td>
+                            <td>
+                                <Price price={order.totalPrice} />
+                            </td>
+                            <td>
+                                <button
+                                    className="btn btn-outline-secondary"
+                                    onClick={() => setOrderModal(order)}
+                                >
+                                    <i className="bi bi-list"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
             {orderModal !== null && <OrderModal order={orderModal} onClose={() => setOrderModal(null)} />}

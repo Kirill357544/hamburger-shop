@@ -1,4 +1,4 @@
-import formatPrice from "../../formatter/formatPrice";
+import Price from "../Price/Price";
 import calculatePrice from "../../calculate/calculatePrice";
 import calculateCalories from "../../calculate/calculateCalories";
 
@@ -26,7 +26,9 @@ export default function Info({ hamburger }) {
             <dl className="dl-horizontal">
                 <div className="d-flex justify-content-evenly">
                     <dt>Price</dt>
-                    <dd>{formatPrice(calculatePrice(hamburger))}</dd>
+                    <dd>
+                        <Price price={calculatePrice(hamburger)} />
+                    </dd>
                 </div>
             </dl>
         </div>

@@ -1,9 +1,16 @@
-import formatPrice from "../../formatter/formatPrice";
+import Price from "../Price/Price";
 
-export default function FillingsSelector({ selectedFillings, onAdd, onRemove, fillings, title }) {
-    const freeFillings = fillings
-        .filter(
-            (filling) => !selectedFillings.find((selectedFilling) => selectedFilling.name === filling.name)
+export default function FillingsSelector({
+    selectedFillings,
+    onAdd,
+    onRemove,
+    fillings,
+    title,
+    addingDisabled = false,
+}) {
+    const availableFillings = fillings
+        .filter((filling) =>
+            selectedFillings.every((selectedFilling) => selectedFilling.name !== filling.name)
         )
         .sort((prev, next) => prev.name.localeCompare(next.name));
 
@@ -21,18 +28,16 @@ export default function FillingsSelector({ selectedFillings, onAdd, onRemove, fi
                             id="dropdownMenuButton"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
-                            disabled={selectedFillings.length === fillings.length ? true : false}
+                            disabled={addingDisabled || selectedFillings.length === fillings.length}
                         >
                             Add {title}
                         </button>
                         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            {freeFillings.map((filling) => {
-                                return (
-                                    <li key={filling.name} onClick={() => onAdd(filling)}>
-                                        <span className="dropdown-item">{filling.name}</span>
-                                    </li>
-                                );
-                            })}
+                            {availableFillings.map((filling) => (
+                                <li key={filling.name} onClick={() => onAdd(filling)}>
+                                    <span className="dropdown-item">{filling.name}</span>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
@@ -47,24 +52,24 @@ export default function FillingsSelector({ selectedFillings, onAdd, onRemove, fi
                     </tr>
                 </thead>
                 <tbody>
-                    {selectedFillings.map((filling, index) => {
-                        return (
-                            <tr key={filling.name}>
-                                <td>{index + 1}</td>
-                                <td width="50%">{filling.name}</td>
-                                <td width="40%">{formatPrice(filling.price)}</td>
-                                <td width="auto">
-                                    <button
-                                        data-name="name"
-                                        className="btn btn-sm btn-danger"
-                                        onClick={() => onRemove(filling)}
-                                    >
-                                        <i className="bi bi-x-lg"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        );
-                    })}
+                    {selectedFillings.map((filling, index) => (
+                        <tr key={filling.name}>
+                            <td>{index + 1}</td>
+                            <td width="50%">{filling.name}</td>
+                            <td width="40%">
+                                <Price price={filling.price} />
+                            </td>
+                            <td width="auto">
+                                <button
+                                    data-name="name"
+                                    className="btn btn-sm btn-danger"
+                                    onClick={() => onRemove(filling)}
+                                >
+                                    <i className="bi bi-x-lg"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SIZES from "../../data/Sizes";
+import sizes from "../../data/Sizes";
 import SizeSelector from "../size-selector/SizeSelector";
 import OrderSelector from "../order-selector/OrderSelector";
 
@@ -19,7 +19,7 @@ export default function OrderCreator() {
             {hamburger === null ? (
                 <>
                     <h1 className="mb-3 pb-3 border-bottom">Select Size</h1>
-                    <SizeSelector sizes={SIZES} onSelect={handleSizeSelect} />
+                    <SizeSelector sizes={sizes} onSelect={handleSizeSelect} />
                 </>
             ) : (
                 <>

@@ -1,5 +1,5 @@
 import formatDate from "../../formatter/formatDate";
-import formatPrice from "../../formatter/formatPrice";
+import Price from "../Price/Price";
 
 export default function OrderModal({ order, onClose }) {
     return (
@@ -13,7 +13,9 @@ export default function OrderModal({ order, onClose }) {
                     <div className="modal-body">
                         <div className="d-flex justify-content-between">
                             <div>Total price</div>
-                            <div>{formatPrice(order.totalPrice)}</div>
+                            <div>
+                                <Price price={order.totalPrice} />{" "}
+                            </div>
                         </div>
                         <div className="d-flex justify-content-between">
                             <div>Count</div>
@@ -26,13 +28,17 @@ export default function OrderModal({ order, onClose }) {
                         {order.hamburger.toppings.map((filling) => (
                             <div className="d-flex justify-content-between" key={filling.name}>
                                 <div>{filling.name}</div>
-                                <div>{formatPrice(filling.price)}</div>
+                                <div>
+                                    <Price price={filling.price} />{" "}
+                                </div>
                             </div>
                         ))}
                         {order.hamburger.stuffings.map((filling) => (
                             <div className="d-flex justify-content-between" key={filling.name}>
                                 <div>{filling.name}</div>
-                                <div>{formatPrice(filling.price)}</div>
+                                <div>
+                                    <Price price={filling.price} />
+                                </div>
                             </div>
                         ))}
                     </div>

@@ -1,4 +1,4 @@
-import formatPrice from "../../formatter/formatPrice";
+import Price from "../Price/Price";
 
 export default function Fillings({ fillings }) {
     return (
@@ -12,17 +12,13 @@ export default function Fillings({ fillings }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {fillings
-                        .sort((prev, next) => next.price - prev.price)
-                        .map((filling, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td>{filling.name}</td>
-                                    <td>{filling.calories}</td>
-                                    <td>{formatPrice(filling.price)}</td>
-                                </tr>
-                            );
-                        })}
+                    {fillings.map((filling, index) => (
+                        <tr key={index}>
+                            <td>{filling.name}</td>
+                            <td>{filling.calories}</td>
+                            <td><Price price={filling.price} /></td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </>
