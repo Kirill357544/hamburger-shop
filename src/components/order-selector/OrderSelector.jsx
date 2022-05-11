@@ -62,7 +62,14 @@ export default function OrderSelector({ hamburger }) {
 
     const handleCountChange = (newCount) => {
         console.log(newCount);
-        setOrder({ count: newCount });
+        // setOrder({ count: newCount });
+        setOrder((prevState) => ({
+            ...prevState,
+            hamburger: {
+                ...prevState.hamburger,
+            },
+            count: newCount,
+        }));
     };
 
     return (
