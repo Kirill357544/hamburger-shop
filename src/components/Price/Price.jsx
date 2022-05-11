@@ -1,4 +1,5 @@
 import { memo, useContext } from "react";
+
 import { PriceContext } from "./PriceConfiguration";
 
 export function Price({ price }) {

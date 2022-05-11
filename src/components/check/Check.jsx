@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import CheckModal from "./CheckModal";
 
 export default function Check({ totalPrice }) {

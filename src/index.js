@@ -4,10 +4,10 @@ import { BrowserRouter } from "react-router-dom";
 import "bootstrap";
 
 import App from "./App";
+import { PriceContext } from "./components/Price/PriceConfiguration";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
-import { PriceContext } from "./components/Price/PriceConfiguration";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
