@@ -18,8 +18,11 @@ export default function OrderSelector() {
         if (hamburger.toppings.length !== hamburger.size.maxTopping) {
             setHamburger((prevState) => {
                 prevState.toppings.push(topping);
-                prevState.price = calculatePrice(prevState);
-                return JSON.parse(JSON.stringify(prevState));
+                const price = calculatePrice(prevState);
+                return {
+                    ...prevState,
+                    price,
+                };
             });
         }
     };
@@ -38,8 +41,11 @@ export default function OrderSelector() {
     const handleAddStuffing = (stuffing) => {
         setHamburger((prevState) => {
             prevState.stuffings.push(stuffing);
-            prevState.price = calculatePrice(prevState);
-            return JSON.parse(JSON.stringify(prevState));
+            const price = calculatePrice(prevState);
+            return {
+                ...prevState,
+                price,
+            };
         });
     };
 
