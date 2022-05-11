@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { HamburgerContext } from "../../HamburgerConfiguration";
+import { HamburgerContext } from "../../HamburgerContext";
 import sizes from "../../data/Sizes";
 import SizeSelector from "../size-selector/SizeSelector";
 import OrderSelector from "../order-selector/OrderSelector";

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import Price from "../Price/Price";
 import OrderStorage from "../../OrderStorage";
-import { HamburgerContext } from "../../HamburgerConfiguration";
+import { HamburgerContext } from "../../HamburgerContext";
 
 export default function CheckModal({ totalPrice, onClose }) {
     const { hamburger, setHamburger } = useContext(HamburgerContext);

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 
-import { HamburgerContext } from "../../HamburgerConfiguration";
+import { HamburgerContext } from "../../HamburgerContext";
 import Price from "../Price/Price";
 
 export default function HeaderLabel() {

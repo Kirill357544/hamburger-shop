@@ -11,5 +11,5 @@ export const HamburgerContext = React.createContext({
         price: null,
         calories: null,
     },
-    setHamburger() {}
+    setHamburger() {},
 });

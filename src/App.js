@@ -7,7 +7,7 @@ import ToppingsPage from "./pages/toppings/ToppingsPage";
 import StuffingsPage from "./pages/stuffings/StuffingsPage";
 import HistoryPage from "./pages/history/HistoryPage";
 import OrderPage from "./pages/order/OrderPage";
-import { HamburgerContext } from "./HamburgerConfiguration";
+import { HamburgerContext } from "./HamburgerContext";
 import { MIN_COUNT } from "./data/Counts";
 
 import "bootstrap-icons/font/bootstrap-icons.css";

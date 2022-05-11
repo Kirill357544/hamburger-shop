@@ -7,7 +7,7 @@ import FillingsSelector from "../fillings-selector/FillingsSelector";
 import CountAndPrice from "../count-and-price/CountAndPrice";
 import stuffings from "../../data/Stuffings";
 import toppings from "../../data/Toppings";
-import { HamburgerContext } from "../../HamburgerConfiguration";
+import { HamburgerContext } from "../../HamburgerContext";
 
 export default function OrderSelector() {
     const { hamburger, setHamburger } = useContext(HamburgerContext);

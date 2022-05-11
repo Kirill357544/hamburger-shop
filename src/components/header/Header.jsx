@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-import { HamburgerContext } from "../../HamburgerConfiguration";
+import { HamburgerContext } from "../../HamburgerContext";
 import HeaderButton from "./HeaderButton";
 import HeaderLabel from "./HeaderLabel";
 
