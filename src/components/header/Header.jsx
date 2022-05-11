@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { HamburgerContext } from "../../HamburgerConfiguration";
 import HeaderButton from "./HeaderButton";
 import HeaderLabel from "./HeaderLabel";
 
 export default function Header() {
+    const [hamburgerContext, setHamburgerContext] = useContext(HamburgerContext);
+
     return (
         <>
             <header className="mb-4 border sticky-top">
@@ -31,7 +35,9 @@ export default function Header() {
                                     </NavLink>
                                 </li>
                             </ul>
-                            <div className="d-flex">{true ? <HeaderButton /> : <HeaderLabel />}</div>
+                            <div className="d-flex">
+                                {hamburgerContext.size === null ? <HeaderButton /> : <HeaderLabel />}
+                            </div>
                         </div>
                     </div>
                 </nav>

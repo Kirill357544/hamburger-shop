@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { MIN_COUNT } from "../../data/Counts";
 import calculatePrice from "../../calculate/calculatePrice";
 import Info from "../info/Info";

@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { HamburgerContext } from "../../HamburgerConfiguration";
 import sizes from "../../data/Sizes";
 import SizeSelector from "../size-selector/SizeSelector";
 import OrderSelector from "../order-selector/OrderSelector";
 
 export default function OrderCreator() {
     const [hamburger, setHamburger] = useState(null);
+    const [hamburgerContext, setHamburgerContext] = useContext(HamburgerContext);
 
     const handleSizeSelect = (size) => {
+        setHamburgerContext((prevState) => ({ ...prevState, size }));
+
         setHamburger({
             size,
             toppings: [],
