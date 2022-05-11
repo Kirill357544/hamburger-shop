@@ -35,7 +35,15 @@ export default function FillingsSelector({
                         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {availableFillings.map((filling) => (
                                 <li key={filling.name} onClick={() => onAdd(filling)}>
-                                    <span className="dropdown-item">{filling.name}</span>
+                                    <a
+                                        href="#0"
+                                        onClick={(event) => {
+                                            event.preventDefault();
+                                        }}
+                                        className="dropdown-item"
+                                    >
+                                        {filling.name}
+                                    </a>
                                 </li>
                             ))}
                         </ul>
