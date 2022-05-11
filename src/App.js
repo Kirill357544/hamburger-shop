@@ -16,6 +16,8 @@ export default function App() {
         toppings: [],
         stuffings: [],
         count: MIN_COUNT,
+        price: null,
+        calories: null,
     });
 
     return (

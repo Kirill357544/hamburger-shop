@@ -8,7 +8,12 @@ export default function OrderCreator() {
     const [hamburgerContext, setHamburgerContext] = useContext(HamburgerContext);
 
     const handleSizeSelect = (size) => {
-        setHamburgerContext((prevState) => ({ ...prevState, size }));
+        setHamburgerContext((prevState) => ({
+            ...prevState,
+            size,
+            price: size.price,
+            calories: size.calories,
+        }));
     };
 
     return (

@@ -1,6 +1,4 @@
 import Price from "../Price/Price";
-import calculatePrice from "../../calculate/calculatePrice";
-import calculateCalories from "../../calculate/calculateCalories";
 
 export default function Info({ hamburger }) {
     return (
@@ -20,14 +18,14 @@ export default function Info({ hamburger }) {
                 </div>
                 <div className="row">
                     <dt className="col text-end">Calories</dt>
-                    <dd className="col">{calculateCalories(hamburger)}</dd>
+                    <dd className="col">{hamburger.calories}</dd>
                 </div>
             </dl>
             <dl className="container">
                 <div className="row">
                     <dt className="col text-end">Price</dt>
                     <dd className="col">
-                        <Price price={calculatePrice(hamburger)} />
+                        <Price price={hamburger.price} />
                     </dd>
                 </div>
             </dl>

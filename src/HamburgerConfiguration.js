@@ -6,4 +6,6 @@ export const HamburgerContext = React.createContext({
     toppings: [],
     stuffings: [],
     count: MIN_COUNT,
+    price: null,
+    calories: null,
 });

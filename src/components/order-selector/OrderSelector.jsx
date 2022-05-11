@@ -17,6 +17,7 @@ export default function OrderSelector() {
         if (hamburgerContext.toppings.length !== hamburgerContext.size.maxTopping) {
             setHamburgerContext((prevState) => {
                 prevState.toppings.push(topping);
+                prevState.price = calculatePrice(prevState);
                 return JSON.parse(JSON.stringify(prevState));
             });
         }
@@ -28,6 +29,7 @@ export default function OrderSelector() {
             return {
                 ...prevState,
                 toppings,
+                price: prevState.price - topping.price,
             };
         });
     };
@@ -35,6 +37,7 @@ export default function OrderSelector() {
     const handleAddStuffing = (stuffing) => {
         setHamburgerContext((prevState) => {
             prevState.stuffings.push(stuffing);
+            prevState.price = calculatePrice(prevState);
             return JSON.parse(JSON.stringify(prevState));
         });
     };
@@ -45,6 +48,7 @@ export default function OrderSelector() {
             return {
                 ...prevState,
                 stuffings,
+                price: prevState.price - stuffing.price,
             };
         });
     };

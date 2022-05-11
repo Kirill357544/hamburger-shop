@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import Price from "../Price/Price";
-import calculatePrice from "../../calculate/calculatePrice";
-import calculateCalories from "../../calculate/calculateCalories";
 import OrderStorage from "../../OrderStorage";
 import { HamburgerContext } from "../../HamburgerConfiguration";
 import { useContext } from "react";
@@ -11,7 +9,14 @@ export default function CheckModal({ totalPrice, onClose }) {
 
     function handleBuyClick() {
         OrderStorage.add({ date: Date.now(), ...hamburgerContext, totalPrice });
-        setHamburgerContext({ size: null, toppings: [], stuffings: [], count: 1 });
+        setHamburgerContext({
+            size: null,
+            toppings: [],
+            stuffings: [],
+            count: 1,
+            price: null,
+            calories: null,
+        });
         onClose();
     }
 
@@ -41,12 +46,12 @@ export default function CheckModal({ totalPrice, onClose }) {
                         <div className="d-flex justify-content-between">
                             <div>Price</div>
                             <div>
-                                <Price price={calculatePrice(hamburgerContext)} />
+                                <Price price={hamburgerContext.price} />
                             </div>
                         </div>
                         <div className="d-flex justify-content-between">
                             <div>Calories</div>
-                            <div>{calculateCalories(hamburgerContext)}</div>
+                            <div>{hamburgerContext.calories}</div>
                         </div>
                         {hamburgerContext.toppings.map((filling) => (
                             <div className="d-flex justify-content-between" key={filling.name}>
