@@ -9,7 +9,7 @@ import stuffings from "../../data/Stuffings";
 import toppings from "../../data/Toppings";
 import { HamburgerContext } from "../../HamburgerConfiguration";
 
-export default function OrderSelector({ hamburger }) {
+export default function OrderSelector() {
     const [hamburgerContext, setHamburgerContext] = useContext(HamburgerContext);
 
     const [order, setOrder] = useState({
