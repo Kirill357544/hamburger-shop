@@ -14,8 +14,6 @@ export default function OrderSelector({ hamburger }) {
         count: MIN_COUNT,
     });
 
-    console.log(order);
-
     const totalPrice = calculatePrice(order.hamburger) * order.count;
 
     const handleAddTopping = (topping) => {

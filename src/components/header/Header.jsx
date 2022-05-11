@@ -31,13 +31,7 @@ export default function Header() {
                                     </NavLink>
                                 </li>
                             </ul>
-                            <div className="d-flex">
-                                <Link className="btn btn-success" to="order">
-                                    <i className="me-2 bi bi-bag-plus"></i>
-                                    New Order
-                                </Link>
-                                <HeaderLabel />
-                            </div>
+                            <div className="d-flex">{true ? <HeaderButton /> : <HeaderLabel />}</div>
                         </div>
                     </div>
                 </nav>
