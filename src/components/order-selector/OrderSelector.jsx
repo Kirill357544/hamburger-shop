@@ -30,11 +30,8 @@ export default function OrderSelector() {
         setHamburger(hamburger.removeStuffing(stuffing));
     };
 
-    const handleCountChange = (newCount) => {
-        setHamburger((prevState) => ({
-            ...prevState,
-            count: newCount,
-        }));
+    const handleCountChange = (count) => {
+        setHamburger(hamburger.updateCount(count));
     };
 
     return (

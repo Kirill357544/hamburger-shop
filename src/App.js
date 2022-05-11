@@ -55,6 +55,12 @@ export default function App() {
                 price: this.price - stuffing.price,
             };
         },
+        updateCount(count) {
+            return {
+                ...this,
+                count,
+            };
+        },
     });
 
     return (
