@@ -8,7 +8,7 @@ export default function Check({ order, totalPrice }) {
         <>
             <div className="col-8 text-end">
                 <button className="btn btn-lg btn-success" data-toggle="modal" onClick={() => setCheck(true)}>
-                    <i className="bi bi-cart4 me-2"></i>
+                    <i className="bi bi-cart4 me-2" />
                     Buy It!
                 </button>
             </div>

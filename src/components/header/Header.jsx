@@ -1,4 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
+import HeaderButton from "./HeaderButton";
+import HeaderLabel from "./HeaderLabel";
 
 export default function Header() {
     return (
@@ -34,6 +36,7 @@ export default function Header() {
                                     <i className="me-2 bi bi-bag-plus"></i>
                                     New Order
                                 </Link>
+                                <HeaderLabel />
                             </div>
                         </div>
                     </div>
