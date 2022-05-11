@@ -1,9 +1,9 @@
 import { HamburgerContext } from "../../HamburgerConfiguration";
 import { useContext } from "react";
+import Price from "../Price/Price";
 
 export default function HeaderLabel() {
-    const [hamburgerContext, setHamburgerContext] = useContext(HamburgerContext);
-    console.log(hamburgerContext);
+    const [hamburgerContext] = useContext(HamburgerContext);
 
     return (
         <a
@@ -13,7 +13,8 @@ export default function HeaderLabel() {
             }}
             className="btn btn-link link-secondary"
         >
-            <strong>Current Order</strong>: {hamburgerContext.size.name} ($26.73 x 1)
+            <strong>Current Order</strong>: {hamburgerContext.size.name} (
+            <Price price={hamburgerContext.size.price} /> x 1)
             <i className="bi bi-cart4 ms-2" />
         </a>
     );
