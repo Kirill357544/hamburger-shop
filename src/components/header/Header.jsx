@@ -6,7 +6,7 @@ import HeaderButton from "./HeaderButton";
 import HeaderLabel from "./HeaderLabel";
 
 export default function Header() {
-    const [hamburgerContext] = useContext(HamburgerContext);
+    const { hamburger } = useContext(HamburgerContext);
 
     return (
         <header className="mb-4 border sticky-top">
@@ -36,7 +36,7 @@ export default function Header() {
                             </li>
                         </ul>
                         <div className="d-flex">
-                            {hamburgerContext.size === null ? <HeaderButton /> : <HeaderLabel />}
+                            {hamburger.size === null ? <HeaderButton /> : <HeaderLabel />}
                         </div>
                     </div>
                 </div>

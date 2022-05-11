@@ -5,12 +5,12 @@ import { HamburgerContext } from "../../HamburgerConfiguration";
 import Price from "../Price/Price";
 
 export default function HeaderLabel() {
-    const [hamburgerContext] = useContext(HamburgerContext);
+    const { hamburger } = useContext(HamburgerContext);
 
     return (
         <Link to={"/order"} className="btn btn-link link-secondary">
-            <strong>Current Order</strong>: {hamburgerContext.size.name} (
-            <Price price={hamburgerContext.price} /> x {hamburgerContext.count})
+            <strong>Current Order</strong>: {hamburger.size.name} (
+            <Price price={hamburger.price} /> x {hamburger.count})
             <i className="bi bi-cart4 ms-2" />
         </Link>
     );

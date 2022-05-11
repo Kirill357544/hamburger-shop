@@ -13,7 +13,7 @@ import { MIN_COUNT } from "./data/Counts";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default function App() {
-    const [hamburgerContext, setHamburgerContext] = useState({
+    const [hamburger, setHamburger] = useState({
         size: null,
         toppings: [],
         stuffings: [],
@@ -23,7 +23,7 @@ export default function App() {
     });
 
     return (
-        <HamburgerContext.Provider value={[hamburgerContext, setHamburgerContext]}>
+        <HamburgerContext.Provider value={{ hamburger, setHamburger }}>
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<HomePage />} />
