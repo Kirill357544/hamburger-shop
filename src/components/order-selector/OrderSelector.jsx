@@ -15,49 +15,19 @@ export default function OrderSelector() {
     const totalPrice = calculatePrice(hamburger) * hamburger.count;
 
     const handleAddTopping = (topping) => {
-        if (hamburger.toppings.length !== hamburger.size.maxTopping) {
-            setHamburger((prevState) => {
-                prevState.toppings.push(topping);
-                const price = calculatePrice(prevState);
-                return {
-                    ...prevState,
-                    price,
-                };
-            });
-        }
+        setHamburger(hamburger.addTopping(topping));
     };
 
     const handleRemoveTopping = (topping) => {
-        setHamburger((prevState) => {
-            const toppings = prevState.toppings.filter((t) => t !== topping);
-            return {
-                ...prevState,
-                toppings,
-                price: prevState.price - topping.price,
-            };
-        });
+        setHamburger(hamburger.removeTopping(topping));
     };
 
     const handleAddStuffing = (stuffing) => {
-        setHamburger((prevState) => {
-            prevState.stuffings.push(stuffing);
-            const price = calculatePrice(prevState);
-            return {
-                ...prevState,
-                price,
-            };
-        });
+        setHamburger(hamburger.addStuffing(stuffing));
     };
 
     const handleRemoveStuffing = (stuffing) => {
-        setHamburger((prevState) => {
-            const stuffings = prevState.stuffings.filter((s) => s !== stuffing);
-            return {
-                ...prevState,
-                stuffings,
-                price: prevState.price - stuffing.price,
-            };
-        });
+        setHamburger(hamburger.removeStuffing(stuffing));
     };
 
     const handleCountChange = (newCount) => {
