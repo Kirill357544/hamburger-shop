@@ -1,5 +1,4 @@
-import { useState, useContext } from "react";
-import { MIN_COUNT } from "../../data/Counts";
+import { useContext } from "react";
 import calculatePrice from "../../calculate/calculatePrice";
 import Info from "../info/Info";
 import Check from "../check/Check";
@@ -12,63 +11,48 @@ import { HamburgerContext } from "../../HamburgerConfiguration";
 export default function OrderSelector() {
     const [hamburgerContext, setHamburgerContext] = useContext(HamburgerContext);
 
-    const [order, setOrder] = useState({
-        hamburger: hamburgerContext,
-        count: MIN_COUNT,
-    });
-
-    const totalPrice = calculatePrice(order.hamburger) * order.count;
+    const totalPrice = calculatePrice(hamburgerContext) * hamburgerContext.count;
 
     const handleAddTopping = (topping) => {
-        if (order.hamburger.toppings.length !== order.hamburger.size.maxTopping) {
-            setOrder((prevState) => {
-                prevState.hamburger.toppings.push(topping);
+        if (hamburgerContext.toppings.length !== hamburgerContext.size.maxTopping) {
+            setHamburgerContext((prevState) => {
+                prevState.toppings.push(topping);
                 return JSON.parse(JSON.stringify(prevState));
             });
         }
     };
 
     const handleRemoveTopping = (topping) => {
-        setOrder((prevState) => {
-            const toppings = prevState.hamburger.toppings.filter((t) => t !== topping);
+        setHamburgerContext((prevState) => {
+            const toppings = prevState.toppings.filter((t) => t !== topping);
             return {
                 ...prevState,
-                hamburger: {
-                    ...prevState.hamburger,
-                    toppings,
-                },
+                toppings,
             };
         });
     };
 
     const handleAddStuffing = (stuffing) => {
-        setOrder((prevState) => {
-            prevState.hamburger.stuffings.push(stuffing);
+        setHamburgerContext((prevState) => {
+            prevState.stuffings.push(stuffing);
             return JSON.parse(JSON.stringify(prevState));
         });
     };
 
     const handleRemoveStuffing = (stuffing) => {
-        setOrder((prevState) => {
-            const stuffings = prevState.hamburger.stuffings.filter((s) => s !== stuffing);
+        setHamburgerContext((prevState) => {
+            const stuffings = prevState.stuffings.filter((s) => s !== stuffing);
             return {
                 ...prevState,
-                hamburger: {
-                    ...prevState.hamburger,
-                    stuffings,
-                },
+                stuffings,
             };
         });
     };
 
     const handleCountChange = (newCount) => {
-        console.log(newCount);
         // setOrder({ count: newCount });
-        setOrder((prevState) => ({
+        setHamburgerContext((prevState) => ({
             ...prevState,
-            hamburger: {
-                ...prevState.hamburger,
-            },
             count: newCount,
         }));
     };
@@ -76,19 +60,19 @@ export default function OrderSelector() {
     return (
         <>
             <div className="d-flex justify-content-between">
-                <Info hamburger={order.hamburger} />
-                <Check order={order} totalPrice={totalPrice} />
+                <Info hamburger={hamburgerContext} />
+                <Check totalPrice={totalPrice} />
             </div>
             <div className="d-flex justify-content-between">
                 <FillingsSelector
-                    selectedFillings={order.hamburger.toppings}
+                    selectedFillings={hamburgerContext.toppings}
                     onAdd={handleAddTopping}
                     onRemove={handleRemoveTopping}
                     fillings={toppings}
                     title="Topping"
                 />
                 <FillingsSelector
-                    selectedFillings={order.hamburger.stuffings}
+                    selectedFillings={hamburgerContext.stuffings}
                     onAdd={handleAddStuffing}
                     onRemove={handleRemoveStuffing}
                     fillings={stuffings}
@@ -96,7 +80,11 @@ export default function OrderSelector() {
                 />
             </div>
             <div className="border-bottom mb-4" />
-            <CountAndPrice count={order.count} totalPrice={totalPrice} onCountChange={handleCountChange} />
+            <CountAndPrice
+                count={hamburgerContext.count}
+                totalPrice={totalPrice}
+                onCountChange={handleCountChange}
+            />
         </>
     );
 }

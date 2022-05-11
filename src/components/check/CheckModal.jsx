@@ -3,10 +3,15 @@ import Price from "../Price/Price";
 import calculatePrice from "../../calculate/calculatePrice";
 import calculateCalories from "../../calculate/calculateCalories";
 import OrderStorage from "../../OrderStorage";
+import { HamburgerContext } from "../../HamburgerConfiguration";
+import { useContext } from "react";
 
-export default function CheckModal({ order, totalPrice, onClose }) {
+export default function CheckModal({ totalPrice, onClose }) {
+    const [hamburgerContext, setHamburgerContext] = useContext(HamburgerContext);
+
     function handleBuyClick() {
-        OrderStorage.add({ date: Date.now(), ...order, totalPrice });
+        OrderStorage.add({ date: Date.now(), ...hamburgerContext, totalPrice });
+        setHamburgerContext({ size: null, toppings: [], stuffings: [], count: 1 });
         onClose();
     }
 
@@ -27,23 +32,23 @@ export default function CheckModal({ order, totalPrice, onClose }) {
                         </div>
                         <div className="d-flex justify-content-between">
                             <div>Count</div>
-                            <div>{order.count}</div>
+                            <div>{hamburgerContext.count}</div>
                         </div>
                         <div className="d-flex justify-content-between">
                             <div>Size</div>
-                            <div>{order.hamburger.size.name}</div>
+                            <div>{hamburgerContext.size.name}</div>
                         </div>
                         <div className="d-flex justify-content-between">
                             <div>Price</div>
                             <div>
-                                <Price price={calculatePrice(order.hamburger)} />
+                                <Price price={calculatePrice(hamburgerContext)} />
                             </div>
                         </div>
                         <div className="d-flex justify-content-between">
                             <div>Calories</div>
-                            <div>{calculateCalories(order.hamburger)}</div>
+                            <div>{calculateCalories(hamburgerContext)}</div>
                         </div>
-                        {order.hamburger.toppings.map((filling) => (
+                        {hamburgerContext.toppings.map((filling) => (
                             <div className="d-flex justify-content-between" key={filling.name}>
                                 <div>{filling.name}</div>
                                 <div>
@@ -51,7 +56,7 @@ export default function CheckModal({ order, totalPrice, onClose }) {
                                 </div>
                             </div>
                         ))}
-                        {order.hamburger.stuffings.map((filling) => (
+                        {hamburgerContext.stuffings.map((filling) => (
                             <div className="d-flex justify-content-between" key={filling.name}>
                                 <div>{filling.name}</div>
                                 <div>

@@ -23,7 +23,7 @@ export default function History({ OrderStorage }) {
                     {orders.reverse().map((order, index) => (
                         <tr key={index}>
                             <td>{formatDate(order.date)}</td>
-                            <td>{order.hamburger.size.name} Hamburger</td>
+                            <td>{order.size.name} Hamburger</td>
                             <td>{order.count}</td>
                             <td>
                                 <Price price={order.totalPrice} />

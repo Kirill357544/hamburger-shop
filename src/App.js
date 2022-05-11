@@ -8,9 +8,16 @@ import HistoryPage from "./pages/history/HistoryPage";
 import OrderPage from "./pages/order/OrderPage";
 import { useState } from "react";
 import { HamburgerContext } from "./HamburgerConfiguration";
+import { MIN_COUNT } from "./data/Counts";
 
 export default function App() {
-    const [hamburgerContext, setHamburgerContext] = useState({ size: null, toppings: [], stuffings: [] });
+    const [hamburgerContext, setHamburgerContext] = useState({
+        size: null,
+        toppings: [],
+        stuffings: [],
+        count: MIN_COUNT,
+    });
+
     return (
         <HamburgerContext.Provider value={[hamburgerContext, setHamburgerContext]}>
             <Routes>
