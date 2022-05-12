@@ -12,7 +12,7 @@ import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <BrowserRouter>
-        <PriceContext.Provider value={{ precision: 2, currency: "$ " }}>
+        <PriceContext.Provider value={{ precision: 2, currency: "$" }}>
             <App />
         </PriceContext.Provider>
     </BrowserRouter>

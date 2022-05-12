@@ -10,28 +10,28 @@ import toppings from "../../data/Toppings";
 import { HamburgerContext } from "../../HamburgerContext";
 
 export default function OrderSelector() {
-    const { hamburger, setHamburger } = useContext(HamburgerContext);
+    const { hamburger } = useContext(HamburgerContext);
 
     const totalPrice = calculatePrice(hamburger) * hamburger.count;
 
     const handleAddTopping = (topping) => {
-        setHamburger(hamburger.addTopping(topping));
+        hamburger.addTopping(topping);
     };
 
     const handleRemoveTopping = (topping) => {
-        setHamburger(hamburger.removeTopping(topping));
+        hamburger.removeTopping(topping);
     };
 
     const handleAddStuffing = (stuffing) => {
-        setHamburger(hamburger.addStuffing(stuffing));
+        hamburger.addStuffing(stuffing);
     };
 
     const handleRemoveStuffing = (stuffing) => {
-        setHamburger(hamburger.removeStuffing(stuffing));
+        hamburger.removeStuffing(stuffing);
     };
 
     const handleCountChange = (count) => {
-        setHamburger(hamburger.updateCount(count));
+        hamburger.updateCount(count);
     };
 
     return (

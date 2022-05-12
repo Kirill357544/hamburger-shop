@@ -23,43 +23,51 @@ export default function App() {
         calories: null,
         addTopping(topping) {
             if (this.toppings.length !== this.size.maxTopping) {
-                this.toppings.push(topping);
-                const price = calculatePrice(this);
-                return {
-                    ...this,
-                    price,
-                };
+                setHamburger((prevState) => {
+                    prevState.toppings.push(topping);
+                    const price = calculatePrice(prevState);
+                    return {
+                        ...prevState,
+                        price,
+                    };
+                });
             }
         },
         removeTopping(topping) {
-            const toppings = this.toppings.filter((t) => t !== topping);
-            return {
-                ...this,
-                toppings,
-                price: this.price - topping.price,
-            };
+            setHamburger((prevState) => {
+                const toppings = prevState.toppings.filter((t) => t !== topping);
+                return {
+                    ...prevState,
+                    toppings,
+                    price: prevState.price - topping.price,
+                };
+            });
         },
         addStuffing(stuffing) {
-            this.stuffings.push(stuffing);
-            const price = calculatePrice(this);
-            return {
-                ...this,
-                price,
-            };
+            setHamburger((prevState) => {
+                prevState.stuffings.push(stuffing);
+                const price = calculatePrice(prevState);
+                return {
+                    ...prevState,
+                    price,
+                };
+            });
         },
         removeStuffing(stuffing) {
-            const stuffings = this.stuffings.filter((s) => s !== stuffing);
-            return {
-                ...this,
-                stuffings,
-                price: this.price - stuffing.price,
-            };
+            setHamburger((prevState) => {
+                const stuffings = prevState.stuffings.filter((s) => s !== stuffing);
+                return {
+                    ...prevState,
+                    stuffings,
+                    price: prevState.price - stuffing.price,
+                };
+            });
         },
         updateCount(count) {
-            return {
-                ...this,
+            setHamburger((prevState) => ({
+                ...prevState,
                 count,
-            };
+            }));
         },
     });
 
